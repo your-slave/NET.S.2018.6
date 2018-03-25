@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace NET.S._2018.Karakouski._6
 {
+    /// <summary>
+    /// NumberRepresentationConverter impliments DoubleToBinaryString method converting double to its iee-754 string represntatiom
+    /// </summary>
     public static class NumberRepresentationConverter
     {
         private const int BITS_IN_BYTE = 8;
@@ -14,6 +14,11 @@ namespace NET.S._2018.Karakouski._6
         static string zeroExponenta = "00000000000";//11 bits
         static string onesExponenta = "11111111111";//11 bits
 
+        /// <summary>
+        /// Converts double to its iee-754 string represntatiom
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public static string DoubleToBinaryString(this double number)
         {
             StringBuilder result = new StringBuilder();

@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace NET.S._2018.Karakouski._6
 {
+    /// <summary>
+    /// Notation class which dterminesl ligal characters for n base number(n>2 n <16))
+    /// </summary>
     public class Notation
     {
         private static string legal6BaseChars;
         private int nBase;
 
-        public int NBase { get { return nBase; } set { if (nBase < 1) throw new ArgumentException(); else nBase = value; } }
+        public int NBase { get { return nBase; } set { if (nBase < 2 || nBase > 16) throw new ArgumentException(); else nBase = value; } }
         public string Legal6BaseChars { get { return legal6BaseChars; } }
 
         public Notation(int nBase)

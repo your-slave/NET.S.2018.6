@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace NET.S._2018.Karakouski._6
 {
+    /// <summary>
+    /// Impliments buble sort method of sorting jagged array
+    /// </summary>
     public static class ArraySort
     {
         /// <summary>
@@ -53,6 +54,12 @@ namespace NET.S._2018.Karakouski._6
             }
         }
 
+        /// <summary>
+        /// Deep cloning of redrence objects
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static T DeepClone<T>(this T obj)
         {
             using (var ms = new MemoryStream())
