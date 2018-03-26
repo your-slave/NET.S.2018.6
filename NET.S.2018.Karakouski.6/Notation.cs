@@ -14,7 +14,7 @@ namespace NET.S._2018.Karakouski._6
         private static string legal6BaseChars;
         private int nBase;
 
-        public int NBase { get { return nBase; } set { if (nBase < 2 || nBase > 16) throw new ArgumentException(); else nBase = value; } }
+        public int NBase { get { return nBase; } set { if (nBase < 2 || nBase > 16) throw new ArgumentException(nameof(NBase) + " must be from 2 to 16"); else nBase = value; } }
         public string Legal6BaseChars { get { return legal6BaseChars; } }
 
         public Notation(int nBase)

@@ -16,9 +16,9 @@ namespace NET.S._2018.Karakouski._6
         /// </summary>
         /// <param name="arr"></param>
         /// <param name="mode">Selects sort mode: 0 for sorting by sum, 1 for by max, 2 by min</param>
-        public static void BubbleSortBySums(int[][] arr, byte mode)
+        public static void BubbleSortBySums(int[][] arr, byte mode, bool reverseOrder=false)
         {
-            int[] temp;
+            int[] temp = new int[0];
             int? comparedValueA;
             int? comparedValueB;
 
@@ -41,35 +41,44 @@ namespace NET.S._2018.Karakouski._6
                             comparedValueB = arr[j + 1].Min();
                             break;
                         default:
-                            throw new ArgumentException(nameof(mode));
+                            throw new ArgumentException(nameof(mode) + " should be from 0 to 2");
                     }
 
-                    if (comparedValueB == null || (comparedValueA > comparedValueB))
+                    if(!reverseOrder)
                     {
-                        temp = arr[j + 1].DeepClone();
-                        arr[j + 1] = arr[j].DeepClone();
-                        arr[j] = temp.DeepClone();
+                        if (comparedValueB == null || (comparedValueA > comparedValueB))
+                        {
+                            Swap(arr[j], arr[j+1], temp);
+                        }
                     }
+                    else
+                    {
+                        if (comparedValueB == null || (comparedValueA < comparedValueB))
+                        {
+                            Swap(arr[j], arr[j + 1], temp);
+                        }
+                    }
+
                 }
             }
         }
 
         /// <summary>
-        /// Deep cloning of redrence objects
+        /// Help method for swapping arrays
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static T DeepClone<T>(this T obj)
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="temp"></param>
+        private static void Swap(int[] a, int[] b, int[] temp)
         {
-            using (var ms = new MemoryStream())
-            {
-                var formatter = new BinaryFormatter();
-                formatter.Serialize(ms, obj);
-                ms.Position = 0;
+            temp = new int[b.Length];
+            b.CopyTo(temp, 0);
 
-                return (T)formatter.Deserialize(ms);
-            }
+            b = new int[a.Length];
+            a.CopyTo(b, 0);
+
+            a = new int[temp.Length];
+            temp.CopyTo(a, 0);
         }
 
     }

@@ -62,13 +62,132 @@ namespace NET.S._2018.Karakouski._6
             {
                 smallerPolynomial = a;
                 minNumberOfConficents = a.Conficents.Length;
-                resulConficents = new int[a.Conficents.Length];
+                resulConficents = new int[b.Conficents.Length];
             }
 
             for (int i = 0; i < minNumberOfConficents; i++)
             {
                 resulConficents[i] += smallerPolynomial.Conficents[i];
             }
+
+            return new Polynomial(resulConficents);
+        }
+
+        /// <summary>
+        /// Override + operator for addition of a number and polynomial
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Polynomial operator +(int a, Polynomial b)
+        {
+
+            int[] resulConficents;
+            Polynomial result = new Polynomial();
+
+            resulConficents = new int[b.Conficents.Length];
+            resulConficents = b.Conficents;
+            resulConficents[0] += a;
+
+            return new Polynomial(resulConficents);
+        }
+
+        /// <summary>
+        /// Override + operator for addition of a polynomial and a number
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Polynomial operator +(Polynomial a, int b)
+        {
+
+            int[] resulConficents;
+            Polynomial result = new Polynomial();
+
+            resulConficents = new int[a.Conficents.Length];
+            resulConficents = a.Conficents;
+            resulConficents[0] += b;
+
+            return new Polynomial(resulConficents);
+        }
+
+        /// <summary>
+        /// Override * operator for multiplication of a polynomial and a number
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Polynomial operator *(Polynomial a, int b)
+        {
+            int[] resulConficents;
+            Polynomial result = new Polynomial();
+
+            resulConficents = new int[a.Conficents.Length];
+            resulConficents = a.Conficents;
+            for(int i=0; i < resulConficents.Length; i++)
+            {
+                resulConficents[i] *= b;
+            }
+
+            return new Polynomial(resulConficents);
+        }
+
+        /// <summary>
+        /// Override * operator for multiplication of a a number and polynomial
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Polynomial operator *(int a, Polynomial b)
+        {
+            int[] resulConficents;
+            Polynomial result = new Polynomial();
+
+            resulConficents = new int[b.Conficents.Length];
+            resulConficents = b.Conficents;
+            for (int i = 0; i < resulConficents.Length; i++)
+            {
+                resulConficents[i] *= a;
+            }
+
+            return new Polynomial(resulConficents);
+        }
+
+        /// <summary>
+        /// Override opertion / for dividing a polynomial by a number
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Polynomial operator /(Polynomial a, int b)
+        {
+            int[] resulConficents;
+            Polynomial result = new Polynomial();
+
+            resulConficents = new int[a.Conficents.Length];
+            resulConficents = a.Conficents;
+            for (int i = 0; i < resulConficents.Length; i++)
+            {
+                resulConficents[i] /= b;
+            }
+
+            return new Polynomial(resulConficents);
+        }
+
+        /// <summary>
+        /// Override opertion / for subtruction of a number from a polynomial
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static Polynomial operator -(Polynomial a, int b)
+        {
+            int[] resulConficents;
+            Polynomial result = new Polynomial();
+
+            resulConficents = new int[a.Conficents.Length];
+            resulConficents = a.Conficents;
+            resulConficents[0] -= b;
 
             return new Polynomial(resulConficents);
         }
@@ -250,6 +369,8 @@ namespace NET.S._2018.Karakouski._6
                     if (sb.Length != 0)
                         sb.Append("+");
                     sb.Append(Conficents[i] + "x^" + i);
+                else
+                    sb.Append("Empty polynomial");
             }
 
             return sb.ToString();
